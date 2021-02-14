@@ -1,10 +1,10 @@
 /* GLOBAL */
 :root {
   --dark-blue: #151e3d;
-  --green: #49AA26;
+  --green: #49aa26;
   --light-green: #3dd705;
   --red: #e92929;
-  --light-red: #ff0
+  --light-red: #ff0;
 }
 
 * {
@@ -63,7 +63,7 @@ header {
 
 /* Links e Botões */
 a {
-  color:var(--green);
+  color: var(--green);
   text-decoration: none;
 }
 
@@ -71,38 +71,36 @@ a:hover {
   color: var(--light-green);
 }
 
-button{
-  width:100%;
+button {
+  width: 100%;
   height: 50px;
   border: none;
   color: #fff;
   background-color: var(--green);
-  padding:0;
-  border-radius:0.25rem;
+  padding: 0;
+  border-radius: 0.25rem;
   cursor: pointer;
 }
 
-button:hover{
+button:hover {
   background-color: var(--light-green);
 }
 
-.button.cancel{
+.button.cancel {
   color: var(--red);
   border: var(--red) 2px solid;
-  border-radius:0.25rem;
-  
+  border-radius: 0.25rem;
+
   height: 50px;
-  
+
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 0.6;
-
 }
 
-.button.cancel:hover{
+.button.cancel:hover {
   opacity: 1;
-
 }
 
 .button.new {
@@ -206,7 +204,7 @@ td.expense {
 .modal-overlay {
   width: 100%;
   height: 100%;
-  
+
   background-color: rgba(0, 0, 0, 0.7);
 
   position: fixed;
@@ -236,7 +234,6 @@ td.expense {
   position: relative;
 
   z-index: 1;
-
 }
 
 /* Form */
@@ -244,9 +241,8 @@ td.expense {
   max-width: 500px;
 }
 
-#form h2{
-  margin-top:0;
-
+#form h2 {
+  margin-top: 0;
 }
 
 input {
@@ -256,15 +252,15 @@ input {
   width: 100%;
 }
 
-.input-group{
-  margin-top:0.8rem;
+.input-group {
+  margin-top: 0.8rem;
 }
 .input-group small {
   opacity: 0.4;
 }
 
 .input-group.actions {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -272,7 +268,6 @@ input {
 .input-group.actions .button,
 .input-group.actions button {
   width: 40%;
-
 }
 
 /* Footer */
