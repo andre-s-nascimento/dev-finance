@@ -18,8 +18,8 @@ v.1.0 em produção
 - [x] Remover transação
 - [x] Calcular balanço
 - [x] Exportar transações em CSV
-- [] Ordenar transações
-- [] Trocar template
+- [ ] Ordenar transações
+- [ ] Trocar template
 
 ### Como testar a aplicação
 
