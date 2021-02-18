@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>dev.finance$</title>
+  <link rel="icon" href="./assets/favicon.png">
   <link rel="stylesheet" href="./styles.css" />
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link
@@ -27,7 +28,7 @@
           <span>Entradas</span>
           <img src="./assets/income.svg" alt="Imagem de Entradas" />
         </h3>
-        <p>R$ 5.000,00</p>
+        <p id='incomeDisplay'>R$ 5.000,00</p>
       </div>
 
       <div class="card">
@@ -35,7 +36,7 @@
           <span>Saídas</span>
           <img src="./assets/expense.svg" alt="Imagem de Saídas" />
         </h3>
-        <p>R$ 2.000,00</p>
+        <p id='expenseDisplay'>R$ 2.000,00</p>
       </div>
 
       <div class="card total">
@@ -43,7 +44,7 @@
           <span>Total</span>
           <img src="./assets/total.svg" alt="Imagem do Total" />
         </h3>
-        <p>R$ 3.000,00</p>
+        <p id='totalDisplay'>R$ 3.000,00</p>
       </div>
     </section>
 
@@ -60,24 +61,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="description">Luz</td>
-            <td class="expense">- R$ 500,00</td>
-            <td class="date">23/01/2021</td>
-            <td><img src="./assets/minus.svg" alt="Remover Transação" /></td>
-          </tr>
-          <tr>
-            <td class="description">Criação Website</td>
-            <td class="income">R$ 5.000,00</td>
-            <td class="date">23/01/2021</td>
-            <td><img src="./assets/minus.svg" alt="Remover Transação" /></td>
-          </tr>
-          <tr>
-            <td class="description">Internet</td>
-            <td class="expense">- R$ 200,00</td>
-            <td class="date">23/01/2021</td>
-            <td><img src="./assets/minus.svg" alt="Remover Transação" /></td>
-          </tr>
+         
         </tbody>
       </table>
     </section>
@@ -87,7 +71,7 @@
     <div class="modal">
       <div id="form">
         <h2>Nova Transação</h2>
-        <form action="">
+        <form action="" onsubmit="Form.submit(event)">
           <div class="input-group">
             <label class="sr-only" for="description">Descrição</label>
             <input type="text" id="description" name="description" placeholder="Descrição" />
@@ -117,21 +101,8 @@
     <p>dev.finance$</p>
   </footer>
 
-  <script type="text/javascript">
-    const Modal = {
-      open(){
-        //Abrir Modal
-        //Adicionar a class active ao modal 
-        document.querySelector('.modal-overlay').classList.add('active');
-        
+  <script src="./assets/js/scripts.js">
 
-      },
-      close(){
-        //fechar o Modal
-        //remover a class active do modal a
-      document.querySelector('.modal-overlay').classList.remove('active');
-    }
-  }
   </script>
 </body>
 
