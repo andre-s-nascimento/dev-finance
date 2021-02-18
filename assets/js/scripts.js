@@ -1,18 +1,18 @@
 const Modal = {
-  open() {
-    //Abrir Modal
-    //Adicionar a class active ao modal
-    document.querySelector(".modal-overlay").classList.add("active");
-  },
-  close() {
-    //fechar o Modal
-    //remover a class active do modal a
-    document.querySelector(".modal-overlay").classList.remove("active");
-  },
+    open() {
+        //Abrir Modal
+        //Adicionar a class active ao modal
+        document.querySelector(".modal-overlay").classList.add("active");
+    },
+    close() {
+        //fechar o Modal
+        //remover a class active do modal a
+        document.querySelector(".modal-overlay").classList.remove("active");
+    },
 };
 
 const Storage = {
-    get(){
+    get() {
         return JSON.parse(localStorage.getItem('dev.finances:transactions')) || []
     },
 
@@ -21,52 +21,75 @@ const Storage = {
     }
 }
 
+const Export = {
+    exportCsv() {
+        let csv = ''
+        let header = 'description, amount, date'
+        let values = ''
+        Transaction.all.forEach((transaction) => {
+            values += transaction.description + ',' + (transaction.amount/100).toFixed(2) + ',' + transaction.date + '\n'
+        })
+        csv += header + '\n' + values;
+        console.log(csv)
+        
+        let blobArquivo = new Blob([csv], { type: 'text/csv' })
+        var linkDownloadCsv = document.createElement('a')
+        linkDownloadCsv.download = 'export.csv'
+        linkDownloadCsv.href = URL.createObjectURL(blobArquivo)
+        linkDownloadCsv.dataset.downloadurl = ['text/csv', linkDownloadCsv.download, linkDownloadCsv.href].join(':')
+        linkDownloadCsv.style.display = "none"
+        document.body.appendChild(linkDownloadCsv)
+        linkDownloadCsv.click()
+        document.body.removeChild(linkDownloadCsv)
+        setTimeout(function () { URL.revokeObjectURL(linkDownloadCsv.href) }, 1500)
+    }
+}
 
 const Transaction = {
     all: Storage.get(),
 
-    add(transaction){
+    add(transaction) {
         Transaction.all.push(transaction)
         App.reload()
     },
 
-    remove (index) {
-        Transaction.all.splice(index,1)
+    remove(index) {
+        Transaction.all.splice(index, 1)
         App.reload()
     },
 
-    incomes () {
+    incomes() {
         let income = 0;
         //pegar todas as Transações
         // para cada transação,  
         Transaction.all.forEach((transaction) => {
             // se for maior que 0
-           if (transaction.amount > 0) {
-            //somar a uma variavel e retornar a variavel
-            income += transaction.amount;
-           }
+            if (transaction.amount > 0) {
+                //somar a uma variavel e retornar a variavel
+                income += transaction.amount;
+            }
         })
-       
+
         return income
     },
 
-    expenses () {
+    expenses() {
         let expense = 0;
         //pegar todas as Transações
         // para cada transação,  
         Transaction.all.forEach((transaction) => {
             // se for maior que 0
-           if (transaction.amount < 0) {
-            //somar a uma variavel e retornar a variavel
-            expense += transaction.amount;
-           }
+            if (transaction.amount < 0) {
+                //somar a uma variavel e retornar a variavel
+                expense += transaction.amount;
+            }
         })
-       
+
         return expense
     },
 
-    total () {
-        return Transaction.incomes() + Transaction.expenses() 
+    total() {
+        return Transaction.incomes() + Transaction.expenses()
 
     }
 }
@@ -74,10 +97,10 @@ const Transaction = {
 // Eu preciso pegar as minhas transações do meu
 // objeto aqui no javascript e colocar no HTML
 
-const DOM =  {
+const DOM = {
     transactionsContainer: document.querySelector('#data-table tbody'),
 
-    addTransaction(transaction, index){
+    addTransaction(transaction, index) {
         const tr = document.createElement('tr')
         tr.innerHTML = DOM.innerHTMLTransaction(transaction, index)
         tr.dataset.index = index
@@ -90,7 +113,7 @@ const DOM =  {
         const CSSclass = transaction.amount > 0 ? 'income' : 'expense'
 
         const amount = Utils.formatCurrency(transaction.amount);
-        
+
         const html = `
             <td class="description">${transaction.description}</td>
             <td class="${CSSclass}">${amount}</td>
@@ -112,7 +135,7 @@ const DOM =  {
         document
             .getElementById('totalDisplay')
             .innerHTML = Utils.formatCurrency(Transaction.total())
-        
+
     },
 
     clearTransactions() {
@@ -124,16 +147,16 @@ const DOM =  {
 const Utils = {
     formatCurrency(value) {
         const signal = Number(value) < 0 ? '-' : ''
-        
+
         value = String(value).replace(/\D/g, '')
-        
-        value = Number(value) / 100 
-        
+
+        value = Number(value) / 100
+
         value = value.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
         })
-        return signal+value
+        return signal + value
     },
 
     formatAmount(value) {
@@ -162,25 +185,25 @@ const Form = {
     },
 
     validadeFields() {
-        const {description, amount, date} = Form.getValues()
-        if( description.trim() === '' || 
-            amount.trim() === '' || 
+        const { description, amount, date } = Form.getValues()
+        if (description.trim() === '' ||
+            amount.trim() === '' ||
             date.trim() === '') {
-                throw new Error('Por favor, preencha todos os campos')
-            }
+            throw new Error('Por favor, preencha todos os campos')
+        }
     },
 
     saveTransaction(transaction) {
         Transaction.add(transaction)
     },
 
-    formatValues(){
-        let {description, amount, date} = Form.getValues()
+    formatValues() {
+        let { description, amount, date } = Form.getValues()
 
         amount = Utils.formatAmount(amount)
         date = Utils.formatDate(date)
 
-        return {description: description, amount: amount, date: date}
+        return { description: description, amount: amount, date: date }
     },
 
     clearFields() {
@@ -189,7 +212,7 @@ const Form = {
         Form.date.value = ''
     },
 
-    submit(event){
+    submit(event) {
         event.preventDefault()
         //console.log(event)
 
@@ -205,12 +228,14 @@ const Form = {
             // Fechar modal para
             Modal.close()
             // Atualizar a aplicação
-            
+
         } catch (error) {
             alert(error.message);
         } // 
- 
-    }
+
+    },
+
+
 }
 
 const App = {

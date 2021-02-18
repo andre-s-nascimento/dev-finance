@@ -45,7 +45,6 @@ h2 {
   margin-top: 3.2rem;
   margin-bottom: 0.8rem;
   color: var(--dark-blue);
-
   font-weight: normal;
 }
 
@@ -108,6 +107,12 @@ button:hover {
   margin-bottom: 0.8rem;
 }
 
+.button.csv {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  margin-top: 0.8rem;
+}
+
 /* Balance */
 #balance {
   margin-top: -8rem;
@@ -123,6 +128,7 @@ button:hover {
   background: white;
   padding: 1.5rem 2rem;
   border-radius: 0.25rem;
+  
 
   margin-bottom: 2rem;
   color: var(--dark-blue);
@@ -138,7 +144,6 @@ button:hover {
 .card p {
   font-size: 2rem;
   line-height: 3rem;
-
   margin-top: 1rem;
 }
 
