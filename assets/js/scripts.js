@@ -11,32 +11,19 @@ const Modal = {
   },
 };
 
+const Storage = {
+    get(){
+        return JSON.parse(localStorage.getItem('dev.finances:transactions')) || []
+    },
+
+    set(transactions) {
+        localStorage.setItem('dev.finances:transactions', JSON.stringify(transactions))
+    }
+}
+
+
 const Transaction = {
-    all: [
-        {
-        description: 'Luz',
-        amount: -50001,
-        date: '23/01/2021',
-        }, 
-        {
-    
-        description: 'Website',
-        amount: 500000,
-        date: '23/01/2021',
-        }, 
-        {
-    
-        description: 'Internet',
-        amount: -20012,
-        date: '23/01/2021',
-        }, 
-        {
-    
-        description: 'App',
-        amount: 200000,
-        date: '23/01/2021',
-        }, 
-    ],
+    all: Storage.get(),
 
     add(transaction){
         Transaction.all.push(transaction)
@@ -92,12 +79,13 @@ const DOM =  {
 
     addTransaction(transaction, index){
         const tr = document.createElement('tr')
-        tr.innerHTML = DOM.innerHTMLTransaction(transaction)
+        tr.innerHTML = DOM.innerHTMLTransaction(transaction, index)
+        tr.dataset.index = index
         DOM.transactionsContainer.appendChild(tr)
 
     },
 
-    innerHTMLTransaction(transaction) {
+    innerHTMLTransaction(transaction, index) {
         //
         const CSSclass = transaction.amount > 0 ? 'income' : 'expense'
 
@@ -107,7 +95,7 @@ const DOM =  {
             <td class="description">${transaction.description}</td>
             <td class="${CSSclass}">${amount}</td>
             <td class="date">${transaction.date}</td>
-            <td><img src="./assets/minus.svg" alt="Remover Transação"></td>
+            <td><img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover Transação"></td>
         `
 
         return html
@@ -146,6 +134,17 @@ const Utils = {
             currency: 'BRL'
         })
         return signal+value
+    },
+
+    formatAmount(value) {
+        value = Number(value.replace(/\,\./g, '')) * 100
+        return value
+
+    },
+
+    formatDate(date) {
+        const splittedDate = date.split('-')
+        return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
     }
 }
 
@@ -162,10 +161,6 @@ const Form = {
         }
     },
 
-    formatData(){
-        console.log('formatar os dados')
-    },
-
     validadeFields() {
         const {description, amount, date} = Form.getValues()
         if( description.trim() === '' || 
@@ -173,6 +168,25 @@ const Form = {
             date.trim() === '') {
                 throw new Error('Por favor, preencha todos os campos')
             }
+    },
+
+    saveTransaction(transaction) {
+        Transaction.add(transaction)
+    },
+
+    formatValues(){
+        let {description, amount, date} = Form.getValues()
+
+        amount = Utils.formatAmount(amount)
+        date = Utils.formatDate(date)
+
+        return {description: description, amount: amount, date: date}
+    },
+
+    clearFields() {
+        Form.description.value = ''
+        Form.amount.value = ''
+        Form.date.value = ''
     },
 
     submit(event){
@@ -183,15 +197,18 @@ const Form = {
         try {
             Form.validadeFields()
             // Formatar os dados para salvar
-            Form.formatData()
+            const transaction = Form.formatValues()
             // Salvar 
+            Form.saveTransaction(transaction)
             // Apagar  os dados do formulario 
+            Form.clearFields()
             // Fechar modal para
+            Modal.close()
             // Atualizar a aplicação
             
         } catch (error) {
             alert(error.message);
-        } // PAREI 2:17:15 Maratona Aula 03
+        } // 
  
     }
 }
@@ -199,11 +216,15 @@ const Form = {
 const App = {
     init() {
 
-        Transaction.all.forEach(transaction => {
-            DOM.addTransaction(transaction)
-        })
+        //Arrow Function
+        // Transaction.all.forEach((transaction,index) => {
+        //     DOM.addTransaction(transaction, index)
+        // })
+        Transaction.all.forEach(DOM.addTransaction)
 
         DOM.updateBalance()
+
+        Storage.set(Transaction.all)
 
     },
 
