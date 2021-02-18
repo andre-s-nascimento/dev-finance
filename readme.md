@@ -7,6 +7,7 @@ Aplicativo proposto pela Maratona Discover proporcionada pela *[Rocketseat](http
 ### Status do Projeto
 
 =================
+
 v.1.0 em produção
 
 ### Features - v.1.0
