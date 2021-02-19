@@ -30,16 +30,20 @@ const Export = {
             values += transaction.description + ',' + (transaction.amount/100).toFixed(2) + ',' + transaction.date + '\n'
         })
         csv += header + '\n' + values;
-        //console.log(csv)
-        
+    
+        //criar um tipo blob para exportar
         let blobArquivo = new Blob([csv], { type: 'text/csv' })
+        //criar um link para que se clique e faça o download
         var linkDownloadCsv = document.createElement('a')
+        //atribuir nome, criar o arquivo
         linkDownloadCsv.download = 'export.csv'
         linkDownloadCsv.href = URL.createObjectURL(blobArquivo)
         linkDownloadCsv.dataset.downloadurl = ['text/csv', linkDownloadCsv.download, linkDownloadCsv.href].join(':')
         linkDownloadCsv.style.display = "none"
+        //colocar o link no HTML e "clicar" virtualmente nele
         document.body.appendChild(linkDownloadCsv)
         linkDownloadCsv.click()
+        //remover o link e fazer ele expirar 
         document.body.removeChild(linkDownloadCsv)
         setTimeout(function () { URL.revokeObjectURL(linkDownloadCsv.href) }, 1500)
     }
