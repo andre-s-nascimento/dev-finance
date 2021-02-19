@@ -24,12 +24,8 @@ v.1.0 em produção
 ### Como testar a aplicação
 
 =================
-```bash
-# Clone este repositório
-$ git clone <https://github.com/andre-s-nascimento/dev-finance>
 
-# Abra o arquivo index.html
-```
+Viste a página: https://andre-s-nascimento.github.io/dev-finance/
 
 ### 🛠 Tecnologias
 
