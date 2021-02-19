@@ -7,6 +7,7 @@ Aplicativo proposto pela Maratona Discover proporcionada pela *[Rocketseat](http
 ### Status do Projeto
 
 =================
+
 v.1.0 em produção
 
 ### Features - v.1.0
@@ -17,8 +18,8 @@ v.1.0 em produção
 - [x] Remover transação
 - [x] Calcular balanço
 - [x] Exportar transações em CSV
-- [] Ordenar transações
-- [] Trocar template
+- [ ] Ordenar transações
+- [ ] Trocar template
 
 ### Como testar a aplicação
 
