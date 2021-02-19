@@ -30,7 +30,7 @@ const Export = {
             values += transaction.description + ',' + (transaction.amount/100).toFixed(2) + ',' + transaction.date + '\n'
         })
         csv += header + '\n' + values;
-        console.log(csv)
+        //console.log(csv)
         
         let blobArquivo = new Blob([csv], { type: 'text/csv' })
         var linkDownloadCsv = document.createElement('a')
