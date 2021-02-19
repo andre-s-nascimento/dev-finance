@@ -154,8 +154,8 @@ const Utils = {
 
         value = String(value).replace(/\D/g, '')
 
-        value = Number(value) / 100
-
+        value = (Number(value) / 100).toFixed(2)
+        //console.log('valor: ' + value)
         value = value.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL'
