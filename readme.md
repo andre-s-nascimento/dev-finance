@@ -1,8 +1,10 @@
 # dev.finance$ - Aplicativo de organização financeira
-![GitHub last commit](https://img.shields.io/github/last-commit/andre-s-nascimento/dev-finance) [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fandre-s-nascimento%2Fdev-finance)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Fandre-s-nascimento%2Fdev-finance)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/andre-s-nascimento/dev-finance)
+
 ## Aplicativo Financeiro
 
-Aplicativo proposto pela Maratona Discover proporcionada pela *[Rocketseat](https://rocketseat.com.br)* criado para praticar e aplicar os conhecimentos em HTML, CSS e JavaScript.
+Aplicativo proposto pela Maratona Discover proporcionada pela _[Rocketseat](https://rocketseat.com.br)_ criado para praticar e aplicar os conhecimentos em HTML, CSS e JavaScript.
 
 ### Status do Projeto
 
@@ -44,7 +46,6 @@ As seguintes tecnologias foram usadas na construção do projeto:
  <br />
  <sub><b>André S Nascimento</b></sub></a> <a href="https://app.rocketseat.com.br/me/andre-soares-nascimento-09244" title="Rocketseat"></a>
 
-
 Feito por André Nascimento 👋🏽 Entre em contato!
 
- [![Linkedin Badge](https://img.shields.io/badge/-André&nbsp;Nascimento-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andresoaresnascimento/)](https://www.linkedin.com/in/andresoaresnascimento/) [![Gmail Badge](https://img.shields.io/badge/-andresoaresnascimento@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:andresoaresnascimento@gmail.com)](mailto:andresoaresnascimento@gmail.com)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/andresoaresnascimento/)](https://www.linkedin.com/in/andresoaresnascimento/) [![Gmail Badge](https://img.shields.io/badge/-GMail-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:andresoaresnascimento@gmail.com)](mailto:andresoaresnascimento@gmail.com)
