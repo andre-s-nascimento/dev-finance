@@ -39,7 +39,7 @@ const Export = {
         csv += header + '\n' + values;
     
         //criar um tipo blob para exportar
-        let blobArquivo = new Blob([csv], { type: 'text/csv' })
+        let blobArquivo = new Blob([csv], { type: 'text/csv;charset=utf-8' })
         //criar um link para que se clique e faça o download
         var linkDownloadCsv = document.createElement('a')
         //atribuir nome, criar o arquivo
